@@ -151,3 +151,92 @@
 // });
 // console.log(newNumArr);
 
+
+// import './css/style.css';
+// Todo アプリ制作部分
+const onClickAdd = () => {
+    const inputText = document.getElementById('add-text').value;
+    document.getElementById("add-text").value = "";
+
+    createIncompleteList(inputText);
+}
+
+// 未完了リストから指定の要素を削除
+const deleteFromImCompleteList = (target) => {
+    document.getElementById('incomplete-list').removeChild(target);
+}
+
+// 未完了リストに追加する処理
+const createIncompleteList = (text) => {
+
+    //li生成
+    const li = document.createElement("li");
+
+    //div生成
+    const div = document.createElement("div");
+    div.className = 'list-row';
+    
+    // p生成
+    const p = document.createElement("p");
+    p.innerText = text;
+
+    // button（完了）タグ生成
+    const completeBtn = document.createElement("button");
+    completeBtn.innerText = "完了";
+    completeBtn.addEventListener("click", () => {
+        deleteFromImCompleteList(completeBtn.parentNode.parentNode);
+
+        // 完了リストに追加する要素（li）
+        const addTarget = completeBtn.parentNode.parentNode;
+        // TODO内容テキストを取得
+        const text = addTarget.firstElementChild.firstElementChild.innerText;
+        //li以下を初期化
+        div.textContent = null;
+        addTarget.textContent = null;
+        p.innerText = text;
+
+        // button（戻す）タグ生成
+        const backBtn = document.createElement("button");
+        backBtn.innerText = "戻す";
+        backBtn.addEventListener('click', () => {
+            // おされた戻すボタンの親タグ(li)を完了リストから削除
+            const deleteTarget = backBtn.parentNode.parentNode;
+            document.getElementById('complete-list').removeChild(deleteTarget);
+
+            const text = backBtn.parentNode.firstElementChild.innerText;
+            createIncompleteList(text);
+        });
+
+        // liタグの子要素にdivを設定
+        addTarget.appendChild(div);
+
+        // divタグの子要素に各要素を設定
+        div.appendChild(p);
+        div.appendChild(backBtn);
+        
+        // 完了リストにli以下を追加
+        document.getElementById('complete-list').appendChild(li);
+    });
+
+    // button（削除）タグ生成
+    const deleteBtn = document.createElement("button");
+    deleteBtn.innerText = "削除";
+    deleteBtn.addEventListener('click', () => {
+        // 押された削除ボタンの親タグ(li)を未完了リストから削除
+        deleteFromImCompleteList(deleteBtn.parentNode.parentNode);
+    });
+
+    // divタグの子要素に各要素を格納
+    li.appendChild(div);
+    div.appendChild(p);
+    div.appendChild(completeBtn);
+    div.appendChild(deleteBtn);
+
+    // 未完了リストに追加
+    document.getElementById('incomplete-list').appendChild(li);
+}
+
+const btn = document.getElementById('add-button');
+btn.addEventListener('click', () => {
+    onClickAdd();
+});
