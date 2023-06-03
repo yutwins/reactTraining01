@@ -1,3 +1,17 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
 @charset "UTF-8";
 html,
 body {
@@ -67,7 +81,7 @@ button:hover {
   color: #fff;
   cursor: pointer;
 }
-/* 
+
 .input-area {
   background-color: #c1ffff;
   width: 400px;
@@ -75,7 +89,7 @@ button:hover {
   padding: 8px;
   margin: 8px;
   border-radius: 8px;
-} */
+}
 
 .incomplete-area {
   background-color: #c6ffe2;
